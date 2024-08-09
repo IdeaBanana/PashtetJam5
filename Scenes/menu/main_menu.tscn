@@ -1,35 +1,164 @@
-[gd_scene load_steps=2 format=3 uid="uid://vqpsho1pwqv5"]
+[gd_scene load_steps=7 format=3 uid="uid://vqpsho1pwqv5"]
 
 [ext_resource type="Script" path="res://Scenes/menu/MainMenu.gd" id="1_mrvbq"]
+[ext_resource type="PackedScene" uid="uid://dalm6kp3x2afb" path="res://music/audio_stream_player_2d.tscn" id="2_yuolb"]
+
+[sub_resource type="Animation" id="Animation_bp537"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1154, 206), Vector2(528, 206)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0rmg0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(528, 206)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inmcu"]
+_data = {
+"RESET": SubResource("Animation_0rmg0"),
+"start": SubResource("Animation_bp537")
+}
+
+[sub_resource type="GDScript" id="GDScript_7sax7"]
+script/source = "extends AnimationPlayer
+
+func _ready():
+	play(\"start\")
+"
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_mrvbq")
+metadata/_edit_vertical_guides_ = [528.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 274.0
-offset_top = 70.0
-offset_right = 857.0
-offset_bottom = 202.0
-theme_override_font_sizes/font_size = 96
-text = "Крутая игра"
+modulate = Color(1, 1, 1, 0)
+offset_left = 528.0
+offset_top = 206.0
+offset_right = 1111.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 86
+text = "LightHouse
+Imposter"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Start" type="Button" parent="CanvasLayer"]
-offset_left = 436.0
-offset_top = 254.0
-offset_right = 686.0
-offset_bottom = 353.0
+offset_left = 79.0
+offset_top = 207.0
+offset_right = 329.0
+offset_bottom = 306.0
 theme_override_font_sizes/font_size = 66
 text = "Начать"
 
 [node name="Quit" type="Button" parent="CanvasLayer"]
-offset_left = 436.0
-offset_top = 421.0
-offset_right = 686.0
-offset_bottom = 520.0
+offset_left = 79.0
+offset_top = 345.0
+offset_right = 329.0
+offset_bottom = 444.0
 theme_override_font_sizes/font_size = 66
 text = "Выход"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_inmcu")
+}
+script = SubResource("GDScript_7sax7")
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("2_yuolb")]
 
 [connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]
