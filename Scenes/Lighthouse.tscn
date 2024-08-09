@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cbrs2jaw27o6m"]
+
+[node name="Lighthouse" type="CharacterBody2D"]
