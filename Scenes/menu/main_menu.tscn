@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://vqpsho1pwqv5"]
+
+[ext_resource type="Script" path="res://Scenes/menu/MainMenu.gd" id="1_mrvbq"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_mrvbq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 274.0
+offset_top = 70.0
+offset_right = 857.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 96
+text = "Крутая игра"
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+offset_left = 436.0
+offset_top = 254.0
+offset_right = 686.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 66
+text = "Начать"
+
+[node name="Quit" type="Button" parent="CanvasLayer"]
+offset_left = 436.0
+offset_top = 421.0
+offset_right = 686.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 66
+text = "Выход"
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]
