@@ -1,3 +1,70 @@
-[gd_scene format=3 uid="uid://cbrs2jaw27o6m"]
+[gd_scene load_steps=11 format=3 uid="uid://cbrs2jaw27o6m"]
 
-[node name="Lighthouse" type="CharacterBody2D"]
+[ext_resource type="Script" path="res://Scripts/Lighthouse.gd" id="1_8up3y"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_18s0u"]
+[ext_resource type="Script" path="res://Scripts/LightWeapon.gd" id="2_f3un0"]
+[ext_resource type="Script" path="res://Scripts/Light.gd" id="3_ou5cv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg6xx"]
+size = Vector2(470, 426)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wx77"]
+size = Vector2(74, 80)
+
+[sub_resource type="Curve" id="Curve_i1fui"]
+_data = [Vector2(0.505495, 0.879121), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_5dkes"]
+_data = [Vector2(0.467033, 0.648352), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_uxp88"]
+_data = [Vector2(0.494506, 0.549451), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_hdl8b"]
+curve_x = SubResource("Curve_i1fui")
+curve_y = SubResource("Curve_5dkes")
+curve_z = SubResource("Curve_uxp88")
+
+[node name="Lighthouse" type="CharacterBody2D" node_paths=PackedStringArray("HpNode", "AttackNode")]
+script = ExtResource("1_8up3y")
+HpNode = NodePath("AbstractHp")
+AttackNode = NodePath("Light/LightAttack")
+
+[node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
+shape = SubResource("RectangleShape2D_cg6xx")
+script = ExtResource("2_18s0u")
+parent = NodePath("..")
+
+[node name="Light" type="RayCast2D" parent="." node_paths=PackedStringArray("light")]
+target_position = Vector2(111, 0)
+collide_with_areas = true
+script = ExtResource("2_f3un0")
+light = NodePath("WeaponViewer")
+
+[node name="WeaponViewer" type="Line2D" parent="Light"]
+position = Vector2(-72, 0)
+points = PackedVector2Array(72, 0, 295, 0)
+width = 0.0
+
+[node name="LightAttack" type="Area2D" parent="Light" node_paths=PackedStringArray("lightWeapon")]
+script = ExtResource("3_ou5cv")
+lightWeapon = NodePath("..")
+damage = 10
+timeBetweenAttack = 0.35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light/LightAttack"]
+shape = SubResource("RectangleShape2D_6wx77")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.484375, 124)
+texture = SubResource("CurveXYZTexture_hdl8b")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -112.0
+offset_right = 51.0
+offset_bottom = -89.0
+text = "LIGTHHOUSE"

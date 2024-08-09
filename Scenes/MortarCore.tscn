@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://w1brxtmn0k28"]
+
+[ext_resource type="Script" path="res://Scripts/MortarCore.gd" id="1_qepry"]
+
+[node name="MortarCore" type="Area2D"]
+script = ExtResource("1_qepry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

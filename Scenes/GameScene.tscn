@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://3qqjie1vlg3t"]
+[gd_scene load_steps=4 format=3 uid="uid://3qqjie1vlg3t"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://cbrs2jaw27o6m" path="res://Scenes/Lighthouse.tscn" id="1_h2odd"]
+[ext_resource type="PackedScene" uid="uid://j8y77dkaq834" path="res://Scenes/GunBoatSheep.tscn" id="2_ju01r"]
+[ext_resource type="PackedScene" uid="uid://d0e4eom1gx2vy" path="res://Scenes/SloopShip.tscn" id="3_qtpye"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Lighthouse" parent="." instance=ExtResource("1_h2odd")]
+position = Vector2(99, 333)
+
+[node name="EnemyShip" parent="." node_paths=PackedStringArray("hpNode") instance=ExtResource("2_ju01r")]
+hpNode = NodePath("Collision")
+
+[node name="SloopShip" parent="." node_paths=PackedStringArray("hpNode") instance=ExtResource("3_qtpye")]
+position = Vector2(1035, 334)
+hpNode = NodePath("AbstractHp")
+
+[node name="CollisionShape2D" parent="SloopShip/ShipMover/Area2D" index="0"]
+debug_color = Color(0.717647, 0.364706, 0.796078, 0.0901961)
+
+[node name="AbstractAttack" parent="SloopShip" index="2"]
+position = Vector2(-7, -4)
+
+[node name="CollisionShape2D" parent="SloopShip/AbstractAttack" index="0"]
+position = Vector2(-54, 0)
+debug_color = Color(0, 0.6, 0.701961, 0.0666667)
+
+[editable path="SloopShip"]

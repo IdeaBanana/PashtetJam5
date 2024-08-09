@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0e4eom1gx2vy"]
+
+[ext_resource type="Script" path="res://Scripts/SloopShip.gd" id="1_cs8ip"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_km73t"]
+[ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="3_8ugg2"]
+[ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="4_e3svh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4as1"]
+size = Vector2(178, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slreb"]
+size = Vector2(2242, 2188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysy3y"]
+size = Vector2(1694, 1584)
+
+[node name="SloopShip" type="CharacterBody2D"]
+script = ExtResource("1_cs8ip")
+
+[node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
+shape = SubResource("RectangleShape2D_n4as1")
+script = ExtResource("2_km73t")
+parent = NodePath("..")
+
+[node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("area", "ship")]
+script = ExtResource("3_8ugg2")
+area = NodePath("Area2D")
+ship = NodePath("..")
+speed = 100.0
+
+[node name="Area2D" type="Area2D" parent="ShipMover"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipMover/Area2D"]
+shape = SubResource("RectangleShape2D_slreb")
+debug_color = Color(0.719348, 0.366087, 0.794394, 0.42)
+
+[node name="AbstractAttack" type="Area2D" parent="." node_paths=PackedStringArray("shipMover")]
+script = ExtResource("4_e3svh")
+shipMover = NodePath("../ShipMover")
+damage = 3
+reloadTime = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbstractAttack"]
+shape = SubResource("RectangleShape2D_ysy3y")

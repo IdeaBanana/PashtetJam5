@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://j8y77dkaq834"]
+
+[ext_resource type="Script" path="res://Scripts/GunBoat.gd" id="1_lylxj"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_hfwxg"]
+[ext_resource type="Script" path="res://Scripts/GunboatMover.gd" id="3_d2bcl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17vnk"]
+size = Vector2(196, 104)
+
+[node name="EnemyShip" type="CharacterBody2D"]
+script = ExtResource("1_lylxj")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
+shape = SubResource("RectangleShape2D_17vnk")
+script = ExtResource("2_hfwxg")
+parent = NodePath("..")
+
+[node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("ship")]
+script = ExtResource("3_d2bcl")
+ship = NodePath("..")
+speed = 75.0
