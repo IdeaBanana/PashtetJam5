@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://vqpsho1pwqv5"]
+[gd_scene load_steps=8 format=3 uid="uid://vqpsho1pwqv5"]
 
 [ext_resource type="Script" path="res://Scenes/menu/MainMenu.gd" id="1_mrvbq"]
+[ext_resource type="FontFile" uid="uid://vb5r8033hs3f" path="res://Font/HomeVideo-Regular.otf" id="2_85wip"]
 [ext_resource type="PackedScene" uid="uid://dalm6kp3x2afb" path="res://music/audio_stream_player_2d.tscn" id="2_yuolb"]
 
 [sub_resource type="Animation" id="Animation_bp537"]
@@ -27,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1154, 206), Vector2(528, 206)]
+"values": [Vector2(1154, 206), Vector2(427, 206)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -120,7 +121,6 @@ func _ready():
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_mrvbq")
-metadata/_edit_vertical_guides_ = [528.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -128,9 +128,10 @@ metadata/_edit_vertical_guides_ = [528.0]
 modulate = Color(1, 1, 1, 0)
 offset_left = 528.0
 offset_top = 206.0
-offset_right = 1111.0
+offset_right = 1198.0
 offset_bottom = 445.0
-theme_override_font_sizes/font_size = 86
+theme_override_fonts/font = ExtResource("2_85wip")
+theme_override_font_sizes/font_size = 111
 text = "LightHouse
 Imposter"
 horizontal_alignment = 1
@@ -140,7 +141,8 @@ vertical_alignment = 1
 offset_left = 79.0
 offset_top = 207.0
 offset_right = 329.0
-offset_bottom = 306.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("2_85wip")
 theme_override_font_sizes/font_size = 66
 text = "Начать"
 
@@ -148,7 +150,8 @@ text = "Начать"
 offset_left = 79.0
 offset_top = 345.0
 offset_right = 329.0
-offset_bottom = 444.0
+offset_bottom = 445.0
+theme_override_fonts/font = ExtResource("2_85wip")
 theme_override_font_sizes/font_size = 66
 text = "Выход"
 
