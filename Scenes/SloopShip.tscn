@@ -23,6 +23,7 @@ parent = NodePath("..")
 [node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("area", "ship")]
 script = ExtResource("3_8ugg2")
 area = NodePath("../AbstractAttack")
+maxDistance = 500.0
 ship = NodePath("..")
 speed = 100.0
 

@@ -13,5 +13,6 @@ layer = -128
 position = Vector2(99, 333)
 
 [node name="Spawner" parent="." instance=ExtResource("3_q0lko")]
+position = Vector2(-3, 3)
 
 [editable path="Lighthouse"]

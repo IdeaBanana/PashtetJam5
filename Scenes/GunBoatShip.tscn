@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://qrn4imf7fx0y"]
+
+[ext_resource type="Script" path="res://Scripts/GunBoat.gd" id="1_uj04s"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_sbpl8"]
+[ext_resource type="Script" path="res://Scripts/GunboatMover.gd" id="3_k7f4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17vnk"]
+size = Vector2(196, 104)
+
+[node name="EnemyShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
+script = ExtResource("1_uj04s")
+hpNode = NodePath("Collision")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
+shape = SubResource("RectangleShape2D_17vnk")
+script = ExtResource("2_sbpl8")
+parent = NodePath("..")
+
+[node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("ship")]
+script = ExtResource("3_k7f4t")
+ship = NodePath("..")
+speed = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -98.0
+offset_top = -52.0
+offset_right = 98.0
+offset_bottom = 52.0
+color = Color(0.111197, 0.111197, 0.111197, 1)
