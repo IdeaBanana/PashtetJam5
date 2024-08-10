@@ -13,3 +13,8 @@ config_version=5
 config/name="Pashtet Jam 5"
 run/main_scene="res://Scenes/GameScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+<<<<<<<HEADconfig/name="Pashtet Jam 5"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

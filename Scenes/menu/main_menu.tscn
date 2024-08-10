@@ -1,0 +1,241 @@
+[gd_scene load_steps=13 format=3 uid="uid://vqpsho1pwqv5"]
+
+[ext_resource type="Script" path="res://Scenes/menu/MainMenu.gd" id="1_mrvbq"]
+[ext_resource type="FontFile" uid="uid://vb5r8033hs3f" path="res://Font/HomeVideo-Regular.otf" id="2_85wip"]
+[ext_resource type="PackedScene" uid="uid://dalm6kp3x2afb" path="res://music/audio_stream_player_2d.tscn" id="2_yuolb"]
+[ext_resource type="AudioStream" uid="uid://cj03u5m5fmusr" path="res://music/playbutton.wav" id="3_iiyyp"]
+[ext_resource type="AudioStream" uid="uid://vwgmmranp211" path="res://music/menuclick.wav" id="4_ca3f5"]
+
+[sub_resource type="Animation" id="Animation_0rmg0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(528, 206)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bp537"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1154, 206), Vector2(427, 206)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Quit:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inmcu"]
+_data = {
+"RESET": SubResource("Animation_0rmg0"),
+"start": SubResource("Animation_bp537")
+}
+
+[sub_resource type="GDScript" id="GDScript_7sax7"]
+script/source = "extends AnimationPlayer
+
+func _ready():
+	play(\"start\")
+"
+
+[sub_resource type="Animation" id="Animation_4iu0o"]
+resource_name = "secret"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Secretanim/SecretLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4bwt2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Secretanim/SecretLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bpxbg"]
+_data = {
+"RESET": SubResource("Animation_4bwt2"),
+"secret": SubResource("Animation_4iu0o")
+}
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_mrvbq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 528.0
+offset_top = 206.0
+offset_right = 1198.0
+offset_bottom = 445.0
+theme_override_fonts/font = ExtResource("2_85wip")
+theme_override_font_sizes/font_size = 111
+text = "LightHouse
+Imposter"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+offset_left = 79.0
+offset_top = 207.0
+offset_right = 329.0
+offset_bottom = 307.0
+scale = Vector2(1.01049, 1.0084)
+theme_override_fonts/font = ExtResource("2_85wip")
+theme_override_font_sizes/font_size = 66
+text = "Начать"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Start"]
+stream = ExtResource("3_iiyyp")
+
+[node name="Quit" type="Button" parent="CanvasLayer"]
+offset_left = 79.0
+offset_top = 347.0
+offset_right = 329.0
+offset_bottom = 447.0
+theme_override_fonts/font = ExtResource("2_85wip")
+theme_override_font_sizes/font_size = 66
+text = "Выход"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Quit"]
+stream = ExtResource("4_ca3f5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_inmcu")
+}
+script = SubResource("GDScript_7sax7")
+
+[node name="Secret" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 436.0
+offset_top = 231.0
+offset_right = 1092.0
+offset_bottom = 424.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Secretanim" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_bpxbg")
+}
+
+[node name="SecretLabel" type="Label" parent="CanvasLayer/Secretanim"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 599.0
+offset_top = 433.0
+offset_right = 936.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("2_85wip")
+theme_override_font_sizes/font_size = 86
+text = "Secret"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("2_yuolb")]
+autoplay = false
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Secret" to="." method="_on_secret_pressed"]
