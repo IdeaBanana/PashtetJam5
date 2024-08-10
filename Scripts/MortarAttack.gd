@@ -15,6 +15,7 @@ func Attack():
 	for i in range(mortarQuantity):
 		var betweenTimer := get_tree().create_timer(timeBetweenAttack)
 		await betweenTimer.timeout
+		emit_signal("attacked")
 		var coreInstance: MoratarCore = mortarCore.instantiate()
 		var house := get_overlapping_bodies().filter(func(child): return child is LightHouse)
 		if get_overlapping_bodies().filter(func(child): return child is LightHouse):

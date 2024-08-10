@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://ukjrx85isdk4"]
+
+[ext_resource type="Script" path="res://Scripts/ToBeContinued.gd" id="1_ghdmg"]
+[ext_resource type="Script" path="res://Scripts/ButtonToMenu.gd" id="2_24uld"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_right = 1152.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ghdmg")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.138
+anchor_top = 0.694
+anchor_right = 0.492
+anchor_bottom = 1.009
+offset_left = 0.0239868
+offset_top = 0.287994
+offset_right = 0.216003
+offset_bottom = 0.167969
+script = ExtResource("2_24uld")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "Escape to Menu"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://8jlr2wt86uud"]
+
+[ext_resource type="Texture2D" uid="uid://ci3wtdaioi617" path="res://Assets/image.png" id="1_dd432"]
+[ext_resource type="Script" path="res://Scripts/TentacleMonster.gd" id="1_matp7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsdkt"]
+atlas = ExtResource("1_dd432")
+region = Rect2(0, 168, 96, 88)
+
+[node name="TentacleMonster" type="Area2D"]
+script = ExtResource("1_matp7")
+
+[node name="TentaclesMonsterSprite" type="Sprite2D" parent="."]
+scale = Vector2(1.90909, 1.90909)
+texture = SubResource("AtlasTexture_gsdkt")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-90, -16, -61, -16, -61, -65, -8.95777, -64.7592, -9, -80, 47, -80, 47, -68, 85, -68, 85, -11, 61, -11, 61, 73, -59, 73, -59, 25, -90, 25)

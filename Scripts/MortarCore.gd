@@ -9,9 +9,13 @@ class_name MoratarCore
 @export var target: Vector2
 
 @export var HpNode: AbstractHp
+@export var costNode: ShipCost
 
 func GetHpNode() -> AbstractHp:
 	return HpNode
+
+func GetCostNode() -> ShipCost:
+	return costNode
 
 func _ready():
 	var tween := get_tree().create_tween()

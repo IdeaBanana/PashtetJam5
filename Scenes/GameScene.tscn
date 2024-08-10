@@ -1,25 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://3qqjie1vlg3t"]
+[gd_scene load_steps=7 format=3 uid="uid://3qqjie1vlg3t"]
 
 [ext_resource type="PackedScene" uid="uid://cbrs2jaw27o6m" path="res://Scenes/Lighthouse.tscn" id="1_h2odd"]
 [ext_resource type="PackedScene" uid="uid://d352acpult1hy" path="res://Scenes/Water.tscn" id="1_tn104"]
 [ext_resource type="PackedScene" uid="uid://dqft2lhu10ytd" path="res://Scenes/ShipSpawner.tscn" id="3_q0lko"]
-[ext_resource type="PackedScene" uid="uid://srje0fgot51" path="res://Scenes/FrigateShip.tscn" id="4_jgxo2"]
+[ext_resource type="AudioStream" uid="uid://buxmck2qghydh" path="res://music/gameplaynaymuzyaka.wav" id="4_n0hvq"]
+[ext_resource type="Script" path="res://Scripts/ScoreCounter.gd" id="5_6xgfg"]
+[ext_resource type="PackedScene" uid="uid://dma2qgcrawnls" path="res://Scenes/MonsterSpawner.tscn" id="6_udiu0"]
 
 [node name="GameScene" type="Node2D"]
-
-[node name="Control" parent="." instance=ExtResource("1_tn104")]
-layer = -128
 
 [node name="Lighthouse" parent="." instance=ExtResource("1_h2odd")]
 position = Vector2(99, 333)
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(99, 333)
+
+[node name="Water" parent="." instance=ExtResource("1_tn104")]
+layer = -128
+
 [node name="Spawner" parent="." instance=ExtResource("3_q0lko")]
 position = Vector2(-3, 3)
 
-[node name="FrigateShip" parent="." instance=ExtResource("4_jgxo2")]
-position = Vector2(957, 349)
-
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(576, 324)
+stream = ExtResource("4_n0hvq")
+autoplay = true
+
+[node name="ScoreCounter" type="Node2D" parent="." node_paths=PackedStringArray("lightAttack", "label")]
+script = ExtResource("5_6xgfg")
+lightAttack = NodePath("../Lighthouse/Light/LightAttack")
+label = NodePath("../CanvasLayer/Label")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 294.0
+offset_top = 61.0
+offset_right = 334.0
+offset_bottom = 84.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MonsterSpawner" parent="." instance=ExtResource("6_udiu0")]
 
 [editable path="Lighthouse"]

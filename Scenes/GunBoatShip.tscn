@@ -1,25 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://qrn4imf7fx0y"]
+[gd_scene load_steps=9 format=3 uid="uid://qrn4imf7fx0y"]
 
 [ext_resource type="Script" path="res://Scripts/GunBoat.gd" id="1_uj04s"]
 [ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_sbpl8"]
 [ext_resource type="Script" path="res://Scripts/GunboatMover.gd" id="3_k7f4t"]
-[ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="4_m88n3"]
+[ext_resource type="Script" path="res://Scripts/ShipCost.gd" id="4_27654"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn51t"]
 radius = 48.9976
 height = 149.998
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lxku1"]
+load_path = "res://.godot/imported/image.png-0675dfeff6aa31652eb3551faf7498f0.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjqmu"]
-atlas = ExtResource("4_m88n3")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(128, 8, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44b2x"]
-atlas = ExtResource("4_m88n3")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(128, 64, 48, 16)
 
-[node name="EnemyShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
+[node name="EnemyShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode", "shipCost")]
 script = ExtResource("1_uj04s")
 hpNode = NodePath("Collision")
+shipCost = NodePath("ShipCost")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 position = Vector2(-5, 0)
@@ -40,3 +44,7 @@ texture = SubResource("AtlasTexture_gjqmu")
 
 [node name="Mast" type="Sprite2D" parent="ShipBody"]
 texture = SubResource("AtlasTexture_44b2x")
+
+[node name="ShipCost" type="Node2D" parent="."]
+script = ExtResource("4_27654")
+cost = 3

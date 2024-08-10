@@ -8,7 +8,8 @@ class_name ShipMover
 
 func _process(delta: float):
 	_Move(delta)
-	ship.look_at(direction)
+	if get_tree().current_scene.get_child(0):
+		ship.look_at(get_tree().current_scene.get_child(0).global_position)
 
 func _Move(delta: float):
 	ship.velocity = speed * direction

@@ -1,33 +1,104 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0e4eom1gx2vy"]
+[gd_scene load_steps=23 format=3 uid="uid://d0e4eom1gx2vy"]
 
 [ext_resource type="Script" path="res://Scripts/SloopShip.gd" id="1_cs8ip"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/OutlineShader.gdshader" id="1_ktabx"]
 [ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_km73t"]
 [ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="3_8ugg2"]
 [ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="4_e3svh"]
-[ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="5_v70y7"]
+[ext_resource type="Script" path="res://Scripts/MortarAnimation.gd" id="5_1rerb"]
+[ext_resource type="Texture2D" uid="uid://chup0egl33lv2" path="res://Assets/MortarAnimation.png" id="5_resel"]
+[ext_resource type="Script" path="res://Scripts/ShipCost.gd" id="8_kg7v1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjao1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tfd3t"]
 radius = 53.0
 height = 208.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysy3y"]
-size = Vector2(9796, 8120)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lxku1"]
+load_path = "res://.godot/imported/image.png-0675dfeff6aa31652eb3551faf7498f0.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5arao"]
-atlas = ExtResource("5_v70y7")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(160, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78ius"]
-atlas = ExtResource("5_v70y7")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(128, 64, 48, 16)
 
-[node name="SloopShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktb4e"]
+shader = ExtResource("1_ktabx")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkl7r"]
+atlas = ExtResource("5_resel")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4vwg"]
+atlas = ExtResource("5_resel")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmip6"]
+atlas = ExtResource("5_resel")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf1ac"]
+atlas = ExtResource("5_resel")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf3sy"]
+atlas = ExtResource("5_resel")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nvbi"]
+atlas = ExtResource("5_resel")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qae88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkl7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4vwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmip6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf1ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf3sy")
+}],
+"loop": false,
+"name": &"MortarShoot",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nvbi")
+}],
+"loop": true,
+"name": &"MortarStay",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysy3y"]
+size = Vector2(9796, 8120)
+
+[node name="SloopShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode", "shipCost")]
+material = SubResource("ShaderMaterial_yjao1")
 script = ExtResource("1_cs8ip")
 hpNode = NodePath("AbstractHp")
+shipCost = NodePath("ShipCost")
 
 [node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tfd3t")
+debug_color = Color(0, 0.6, 0.701961, 0)
 script = ExtResource("2_km73t")
 parent = NodePath("..")
 
@@ -38,19 +109,41 @@ maxDistance = 500.0
 ship = NodePath("..")
 speed = 100.0
 
-[node name="AbstractAttack" type="Area2D" parent="." node_paths=PackedStringArray("shipMover")]
-script = ExtResource("4_e3svh")
-shipMover = NodePath("../ShipMover")
-damage = 3
-timeBetweenAttack = 0.2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AbstractAttack"]
-shape = SubResource("RectangleShape2D_ysy3y")
-
 [node name="ShipBody" type="Sprite2D" parent="."]
+use_parent_material = true
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_5arao")
 
 [node name="Mast" type="Sprite2D" parent="ShipBody"]
 texture = SubResource("AtlasTexture_78ius")
+
+[node name="Mortar" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("mortar")]
+material = SubResource("ShaderMaterial_ktb4e")
+use_parent_material = true
+position = Vector2(62, -1.19209e-07)
+rotation = 1.5708
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_qae88")
+animation = &"MortarShoot"
+autoplay = "MortarStay"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("5_1rerb")
+mortar = NodePath("../AbstractAttack")
+
+[node name="AbstractAttack" type="Area2D" parent="." node_paths=PackedStringArray("shipMover")]
+position = Vector2(108, 1)
+script = ExtResource("4_e3svh")
+shipMover = NodePath("../ShipMover")
+damage = 3
+timeBetweenAttack = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbstractAttack"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ysy3y")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="ShipCost" type="Node2D" parent="."]
+script = ExtResource("8_kg7v1")
+cost = 5

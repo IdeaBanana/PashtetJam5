@@ -7,6 +7,8 @@ class_name AbstractAttack
 @export var reloadTime: float = 5.0
 @export var timeBetweenAttack: float = 0.47
 
+signal attacked
+
 func Attack():
 	pass
 

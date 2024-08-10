@@ -1,25 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://srje0fgot51"]
+[gd_scene load_steps=13 format=3 uid="uid://srje0fgot51"]
 
 [ext_resource type="Script" path="res://Scripts/FrigateShip.gd" id="1_qih2q"]
 [ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_xgki1"]
 [ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="3_0t08t"]
 [ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="4_xxkky"]
-[ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="5_tray7"]
+[ext_resource type="Script" path="res://Scripts/MortarAnimation.gd" id="5_cckk8"]
+[ext_resource type="Script" path="res://Scripts/ShipCost.gd" id="6_1a1gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npxbe"]
 radius = 79.5
 height = 264.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk0m8"]
-size = Vector2(5876, 3940)
+size = Vector2(3868, 3406)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lxku1"]
+load_path = "res://.godot/imported/image.png-0675dfeff6aa31652eb3551faf7498f0.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dhefs"]
-atlas = ExtResource("5_tray7")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(192, 0, 48, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_adgqj"]
-atlas = ExtResource("5_tray7")
+atlas = SubResource("CompressedTexture2D_lxku1")
 region = Rect2(64, 64, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_erc5g"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"MortarShoot",
+"speed": 5.0
+}]
 
 [node name="FrigateShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
 script = ExtResource("1_qih2q")
@@ -55,3 +67,13 @@ texture = SubResource("AtlasTexture_dhefs")
 
 [node name="Mast" type="Sprite2D" parent="Body"]
 texture = SubResource("AtlasTexture_adgqj")
+
+[node name="MortarAnimation" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("mortar")]
+sprite_frames = SubResource("SpriteFrames_erc5g")
+animation = &"MortarShoot"
+script = ExtResource("5_cckk8")
+mortar = NodePath("../MortarAttack")
+
+[node name="ShipCost" type="Node2D" parent="."]
+script = ExtResource("6_1a1gy")
+cost = 10

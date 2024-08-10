@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://w1brxtmn0k28"]
+[gd_scene load_steps=7 format=3 uid="uid://w1brxtmn0k28"]
 
 [ext_resource type="Script" path="res://Scripts/MortarCore.gd" id="1_qepry"]
 [ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_pepmw"]
+[ext_resource type="Script" path="res://Scripts/ShipCost.gd" id="3_tums7"]
 
 [sub_resource type="Curve" id="Curve_1t7w4"]
 _data = [Vector2(0.296703, 1), 0.0, 0.0, 0, 0]
@@ -14,9 +15,10 @@ curve = SubResource("Curve_1t7w4")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3w1p"]
 size = Vector2(58, 56)
 
-[node name="MortarCore" type="Area2D" node_paths=PackedStringArray("HpNode")]
+[node name="MortarCore" type="Area2D" node_paths=PackedStringArray("HpNode", "costNode")]
 script = ExtResource("1_qepry")
 HpNode = NodePath("AbstractHp")
+costNode = NodePath("ShipCost")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -29.0
@@ -30,3 +32,7 @@ shape = SubResource("RectangleShape2D_g3w1p")
 script = ExtResource("2_pepmw")
 healthPoint = 15
 parent = NodePath("..")
+
+[node name="ShipCost" type="Node2D" parent="."]
+script = ExtResource("3_tums7")
+cost = 1
