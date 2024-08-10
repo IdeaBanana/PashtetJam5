@@ -1,23 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0e4eom1gx2vy"]
+[gd_scene load_steps=10 format=3 uid="uid://d0e4eom1gx2vy"]
 
 [ext_resource type="Script" path="res://Scripts/SloopShip.gd" id="1_cs8ip"]
-[ext_resource type="Script" path="res://Scenes/EnemyHp.gd" id="2_qpqq2"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_km73t"]
 [ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="3_8ugg2"]
 [ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="4_e3svh"]
+[ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="5_v70y7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4as1"]
-size = Vector2(234, 116)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tfd3t"]
+radius = 53.0
+height = 208.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysy3y"]
 size = Vector2(9796, 8120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5arao"]
+atlas = ExtResource("5_v70y7")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78ius"]
+atlas = ExtResource("5_v70y7")
+region = Rect2(128, 64, 48, 16)
 
 [node name="SloopShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
 script = ExtResource("1_cs8ip")
 hpNode = NodePath("AbstractHp")
 
 [node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
-shape = SubResource("RectangleShape2D_n4as1")
-script = ExtResource("2_qpqq2")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tfd3t")
+script = ExtResource("2_km73t")
 parent = NodePath("..")
 
 [node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("area", "ship")]
@@ -36,9 +47,10 @@ timeBetweenAttack = 0.2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbstractAttack"]
 shape = SubResource("RectangleShape2D_ysy3y")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -117.0
-offset_top = -58.0
-offset_right = 117.0
-offset_bottom = 58.0
-color = Color(0.60933, 0.60933, 0.60933, 1)
+[node name="ShipBody" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_5arao")
+
+[node name="Mast" type="Sprite2D" parent="ShipBody"]
+texture = SubResource("AtlasTexture_78ius")

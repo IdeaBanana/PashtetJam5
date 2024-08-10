@@ -1,6 +1,7 @@
 extends AbstractHp
 
 class_name EnemyHp
+
 func ApplyDie():
 	var shipSink = AudioStreamPlayer2D.new()
 	shipSink.stream = preload("res://music/watersplash.wav")

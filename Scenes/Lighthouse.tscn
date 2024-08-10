@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbrs2jaw27o6m"]
+[gd_scene load_steps=10 format=3 uid="uid://cbrs2jaw27o6m"]
 
 [ext_resource type="Script" path="res://Scripts/Lighthouse.gd" id="1_8up3y"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_18s0u"]
 [ext_resource type="Script" path="res://Scripts/LightWeapon.gd" id="2_f3un0"]
-[ext_resource type="Script" path="res://Scenes/EnemyHp.gd" id="2_s6hv3"]
 [ext_resource type="Script" path="res://Scripts/Light.gd" id="3_ou5cv"]
 [ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="5_2qnln"]
-[ext_resource type="AudioStream" uid="uid://dru5cnemjma4y" path="res://music/playerhit1.wav" id="6_52kuq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmi1n"]
 radius = 81.0247
@@ -26,9 +25,10 @@ script = ExtResource("1_8up3y")
 HpNode = NodePath("AbstractHp")
 AttackNode = NodePath("Light/LightAttack")
 
-[node name="AbstractHp" type="CollisionShape2D" parent="."]
+[node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 shape = SubResource("CircleShape2D_cmi1n")
-script = ExtResource("2_s6hv3")
+script = ExtResource("2_18s0u")
+parent = NodePath("..")
 
 [node name="Light" type="RayCast2D" parent="." node_paths=PackedStringArray("light")]
 target_position = Vector2(111, 0)
@@ -61,6 +61,3 @@ texture = SubResource("AtlasTexture_lfpli")
 position = Vector2(3.8147e-06, 0)
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_tr3j7")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_52kuq")

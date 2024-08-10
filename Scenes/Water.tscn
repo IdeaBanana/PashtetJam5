@@ -44,14 +44,14 @@ void fragment()
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gsbav"]
 shader = SubResource("Shader_2h2a3")
 shader_parameter/R = Vector2(0.8, 1.235)
-shader_parameter/scale = 1.655
-shader_parameter/speed = 0.1
-shader_parameter/direction = Vector3(1, 1, 0)
+shader_parameter/scale = 1.705
+shader_parameter/speed = 0.05
+shader_parameter/direction = Vector3(4.224, 4.856, -2.231)
 shader_parameter/distortion = 0.37
 shader_parameter/layers = 1.27
-shader_parameter/shades = 3.0
+shader_parameter/shades = -1.195
 shader_parameter/steps = 6
-shader_parameter/tint = Vector3(1, 1, 1)
+shader_parameter/tint = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Curve" id="Curve_q5ovs"]
 _data = [Vector2(0.510989, 1), 0.0, 0.0, 0, 0]

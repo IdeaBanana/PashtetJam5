@@ -1,19 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://qrn4imf7fx0y"]
+[gd_scene load_steps=8 format=3 uid="uid://qrn4imf7fx0y"]
 
 [ext_resource type="Script" path="res://Scripts/GunBoat.gd" id="1_uj04s"]
-[ext_resource type="Script" path="res://Scenes/EnemyHp.gd" id="2_5lixi"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_sbpl8"]
 [ext_resource type="Script" path="res://Scripts/GunboatMover.gd" id="3_k7f4t"]
+[ext_resource type="Texture2D" uid="uid://bajo002ap84iw" path="res://Assets/image.png" id="4_m88n3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17vnk"]
-size = Vector2(196, 104)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn51t"]
+radius = 48.9976
+height = 149.998
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjqmu"]
+atlas = ExtResource("4_m88n3")
+region = Rect2(128, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44b2x"]
+atlas = ExtResource("4_m88n3")
+region = Rect2(128, 64, 48, 16)
 
 [node name="EnemyShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
 script = ExtResource("1_uj04s")
 hpNode = NodePath("Collision")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
-shape = SubResource("RectangleShape2D_17vnk")
-script = ExtResource("2_5lixi")
+position = Vector2(-5, 0)
+rotation = 1.57198
+shape = SubResource("CapsuleShape2D_gn51t")
+script = ExtResource("2_sbpl8")
 parent = NodePath("..")
 
 [node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("ship")]
@@ -21,9 +33,10 @@ script = ExtResource("3_k7f4t")
 ship = NodePath("..")
 speed = 75.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -98.0
-offset_top = -52.0
-offset_right = 98.0
-offset_bottom = 52.0
-color = Color(0.111197, 0.111197, 0.111197, 1)
+[node name="ShipBody" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2.90695, 2.90695)
+texture = SubResource("AtlasTexture_gjqmu")
+
+[node name="Mast" type="Sprite2D" parent="ShipBody"]
+texture = SubResource("AtlasTexture_44b2x")
