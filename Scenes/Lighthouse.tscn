@@ -9,7 +9,7 @@
 size = Vector2(124, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wx77"]
-size = Vector2(74, 80)
+size = Vector2(113, 108)
 
 [sub_resource type="Curve" id="Curve_i1fui"]
 _data = [Vector2(0.505495, 0.879121), 0.0, 0.0, 0, 0]
@@ -55,9 +55,10 @@ script = ExtResource("3_ou5cv")
 lightWeapon = NodePath("..")
 damage = 10
 reloadTime = 1.39
-timeBetweenAttack = 0.35
+timeBetweenAttack = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/LightAttack"]
+position = Vector2(54.5, 0)
 shape = SubResource("RectangleShape2D_6wx77")
 
 [node name="Sprite" type="Sprite2D" parent="."]

@@ -22,15 +22,16 @@ func _process(delta):
 	ship.look_at(direction)
 
 func _Move(delta):
-	if CheckLightHouse() and !global_position.distance_to(targetObject.global_position) <= maxDistance and targetObject:
-		direction = Vector2(targetObject.global_position - self.global_position)
-		ship.velocity = direction.normalized() * speed
-		ship.move_and_slide()
-	else:
-		ship.velocity = Vector2.ZERO
-		if !isStopped:
-			isStopped = true
-			emit_signal("stopped")
+	if targetObject and CheckLightHouse():
+		if !ship.global_position.distance_to(targetObject.global_position) <= maxDistance:
+			direction = Vector2(targetObject.global_position - ship.global_position)
+			ship.velocity = direction.normalized() * speed
+			ship.move_and_slide()
+		elif ship.global_position.distance_to(targetObject.global_position) <= maxDistance:
+			ship.velocity = Vector2.ZERO
+			if !isStopped:
+				isStopped = true
+				emit_signal("stopped")
 
 func CheckLightHouse() -> bool:
 	if area.get_overlapping_bodies().filter(func(child): return child is LightHouse):

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqft2lhu10ytd"]
+
+[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="1_jpphi"]
+
+[node name="Spawner" type="Node2D" node_paths=PackedStringArray("spawnMarkerParent", "spawnTimer")]
+script = ExtResource("1_jpphi")
+spawnMarkerParent = NodePath(".")
+spawnTimer = NodePath("Timer")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(785, -109)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(662, 764)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(1284, 107)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(1284, 304)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(1284, 497)
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(1042, -109)
+
+[node name="Marker2D7" type="Marker2D" parent="."]
+position = Vector2(932, 764)
+
+[node name="HardBattleTrigger" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

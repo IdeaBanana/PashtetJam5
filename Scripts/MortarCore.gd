@@ -8,6 +8,11 @@ class_name MoratarCore
 
 @export var target: Vector2
 
+@export var HpNode: AbstractHp
+
+func GetHpNode() -> AbstractHp:
+	return HpNode
+
 func _ready():
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "global_position", target, speedInSec)

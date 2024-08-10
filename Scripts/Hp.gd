@@ -13,7 +13,6 @@ func ApplyDamage(damage: int):
 		ApplyDie()
 	else:
 		emit_signal("damaged")
-	print(healthPoint)
 
 func CheckDie(damage: int) -> bool:
 	if healthPoint - damage <= 0:

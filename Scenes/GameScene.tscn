@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbrs2jaw27o6m" path="res://Scenes/Lighthouse.tscn" id="1_h2odd"]
 [ext_resource type="PackedScene" uid="uid://d352acpult1hy" path="res://Scenes/Water.tscn" id="1_tn104"]
-[ext_resource type="PackedScene" uid="uid://srje0fgot51" path="res://Scenes/FrigateShip.tscn" id="4_7f6vg"]
+[ext_resource type="PackedScene" uid="uid://dqft2lhu10ytd" path="res://Scenes/ShipSpawner.tscn" id="3_q0lko"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -12,23 +12,6 @@ layer = -128
 [node name="Lighthouse" parent="." instance=ExtResource("1_h2odd")]
 position = Vector2(99, 333)
 
-[node name="FrigateShip" parent="." instance=ExtResource("4_7f6vg")]
-position = Vector2(1151, 413)
-
-[node name="SloopShipMover" parent="FrigateShip" index="2"]
-maxDistance = 500.0
-
-[node name="FrigateShip2" parent="." instance=ExtResource("4_7f6vg")]
-position = Vector2(1181, 216)
-
-[node name="FrigateShip3" parent="." instance=ExtResource("4_7f6vg")]
-position = Vector2(869, -45)
-
-[node name="FrigateShip4" parent="." instance=ExtResource("4_7f6vg")]
-position = Vector2(830, 686)
-
-[node name="FrigateShip5" parent="." instance=ExtResource("4_7f6vg")]
-position = Vector2(1232, 761)
+[node name="Spawner" parent="." instance=ExtResource("3_q0lko")]
 
 [editable path="Lighthouse"]
-[editable path="FrigateShip"]

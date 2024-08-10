@@ -4,7 +4,6 @@ class_name LightAttack
 
 @export var lightWeapon: LightWeapon
 
-var attackBody: EnemyShip
 var attackTimer: float
 
 func _ready():
@@ -17,12 +16,10 @@ func _ready():
 	lightWeapon.stopAttacked.connect(_OnStopAttacked)
 
 func _OnObjectEntered(object):
-	if object is EnemyShip:
-		SetBodyForAttack(object)
+	pass
 
 func _OnObjectExited(object):
-	if object == attackBody:
-		attackBody = null
+	pass
 
 func _OnAttacked():
 	set_process(true)
@@ -35,13 +32,17 @@ func _physics_process(delta):
 
 func _process(delta):
 	attackTimer += delta
-	if timeBetweenAttack < attackTimer and attackBody:
+	if timeBetweenAttack < attackTimer and GetDamageableNodes():
 		attackTimer = 0
 		Attack()
 
-func Attack(body: EnemyShip = attackBody):
-	if body:
-		body.GetHpNode().ApplyDamage(damage)
+func Attack():
+	if GetDamageableNodes().size() > 0:
+		for body in GetDamageableNodes():
+			body.GetHpNode().ApplyDamage(damage)
 
-func SetBodyForAttack(value: EnemyShip):
-	attackBody = value
+func GetDamageableNodes() -> Array:
+	var bodiesArray: Array = get_overlapping_bodies().filter(func(child): return child is EnemyShip)
+	var areasArray: Array = get_overlapping_areas().filter(func(child): return child is MoratarCore)
+	bodiesArray.append_array(areasArray)
+	return bodiesArray

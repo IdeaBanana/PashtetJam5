@@ -7,8 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17vnk"]
 size = Vector2(196, 104)
 
-[node name="EnemyShip" type="CharacterBody2D"]
+[node name="EnemyShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
 script = ExtResource("1_lylxj")
+hpNode = NodePath("Collision")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 shape = SubResource("RectangleShape2D_17vnk")
@@ -19,3 +20,10 @@ parent = NodePath("..")
 script = ExtResource("3_d2bcl")
 ship = NodePath("..")
 speed = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -98.0
+offset_top = -52.0
+offset_right = 98.0
+offset_bottom = 52.0
+color = Color(0.111197, 0.111197, 0.111197, 1)

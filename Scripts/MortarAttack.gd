@@ -19,7 +19,8 @@ func Attack():
 		var house := get_overlapping_bodies().filter(func(child): return child is LightHouse)
 		if get_overlapping_bodies().filter(func(child): return child is LightHouse):
 			coreInstance.SetTarget(house[0].global_position)
-			add_child(coreInstance)
+			coreInstance.global_position = global_position
+			get_tree().current_scene.add_child(coreInstance)
 	Reload()
 
 func Reload():
