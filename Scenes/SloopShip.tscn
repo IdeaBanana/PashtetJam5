@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d0e4eom1gx2vy"]
 
 [ext_resource type="Script" path="res://Scripts/SloopShip.gd" id="1_cs8ip"]
-[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_km73t"]
+[ext_resource type="Script" path="res://Scenes/EnemyHp.gd" id="2_qpqq2"]
 [ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="3_8ugg2"]
 [ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="4_e3svh"]
 
@@ -17,7 +17,7 @@ hpNode = NodePath("AbstractHp")
 
 [node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 shape = SubResource("RectangleShape2D_n4as1")
-script = ExtResource("2_km73t")
+script = ExtResource("2_qpqq2")
 parent = NodePath("..")
 
 [node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("area", "ship")]

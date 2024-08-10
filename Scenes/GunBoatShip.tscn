@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qrn4imf7fx0y"]
 
 [ext_resource type="Script" path="res://Scripts/GunBoat.gd" id="1_uj04s"]
-[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_sbpl8"]
+[ext_resource type="Script" path="res://Scenes/EnemyHp.gd" id="2_5lixi"]
 [ext_resource type="Script" path="res://Scripts/GunboatMover.gd" id="3_k7f4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17vnk"]
@@ -13,7 +13,7 @@ hpNode = NodePath("Collision")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
 shape = SubResource("RectangleShape2D_17vnk")
-script = ExtResource("2_sbpl8")
+script = ExtResource("2_5lixi")
 parent = NodePath("..")
 
 [node name="ShipMover" type="Node2D" parent="." node_paths=PackedStringArray("ship")]
