@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Pashtet Jam 5"
+config/name="LightHouse Imposter"
 run/main_scene="res://Scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.180005, 0.180005, 0.180005, 1)
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
