@@ -10,7 +10,6 @@ func _ready():
 
 func _process(delta):
 	super._process(delta)
-	look_at(Vector2(global_position.x, get_viewport_rect().position.y * direction.y))
 
 func _Move(delta):
 	super._Move(delta)

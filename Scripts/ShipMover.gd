@@ -8,6 +8,7 @@ class_name ShipMover
 
 func _process(delta: float):
 	_Move(delta)
+	ship.look_at(direction)
 
 func _Move(delta: float):
 	ship.velocity = speed * direction

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Light.gd" id="3_ou5cv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cg6xx"]
-size = Vector2(470, 426)
+size = Vector2(124, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wx77"]
 size = Vector2(74, 80)
@@ -43,6 +43,7 @@ target_position = Vector2(111, 0)
 collide_with_areas = true
 script = ExtResource("2_f3un0")
 light = NodePath("WeaponViewer")
+offset = 0.23
 
 [node name="WeaponViewer" type="Line2D" parent="Light"]
 position = Vector2(-72, 0)
@@ -53,6 +54,7 @@ width = 0.0
 script = ExtResource("3_ou5cv")
 lightWeapon = NodePath("..")
 damage = 10
+reloadTime = 1.39
 timeBetweenAttack = 0.35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/LightAttack"]

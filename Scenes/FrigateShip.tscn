@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://srje0fgot51"]
+
+[ext_resource type="Script" path="res://Scripts/FrigateShip.gd" id="1_qih2q"]
+[ext_resource type="Script" path="res://Scripts/Hp.gd" id="2_xgki1"]
+[ext_resource type="Script" path="res://Scripts/MortarAttack.gd" id="3_0t08t"]
+[ext_resource type="Script" path="res://Scripts/SloopShipMover.gd" id="4_xxkky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u8jp"]
+size = Vector2(212, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk0m8"]
+size = Vector2(2498, 1538)
+
+[sub_resource type="Curve" id="Curve_pi1ub"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e84nc"]
+curve = SubResource("Curve_pi1ub")
+
+[node name="FrigateShip" type="CharacterBody2D" node_paths=PackedStringArray("hpNode")]
+script = ExtResource("1_qih2q")
+hpNode = NodePath("AbstractHp")
+
+[node name="AbstractHp" type="CollisionShape2D" parent="." node_paths=PackedStringArray("parent")]
+shape = SubResource("RectangleShape2D_7u8jp")
+script = ExtResource("2_xgki1")
+parent = NodePath("..")
+
+[node name="MortarAttack" type="Area2D" parent="." node_paths=PackedStringArray("shipMover")]
+script = ExtResource("3_0t08t")
+mortarQuantity = 2
+shipMover = NodePath("../SloopShipMover")
+damage = 10
+reloadTime = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MortarAttack"]
+shape = SubResource("RectangleShape2D_jk0m8")
+
+[node name="SloopShipMover" type="Node2D" parent="." node_paths=PackedStringArray("area", "ship")]
+script = ExtResource("4_xxkky")
+area = NodePath("../MortarAttack")
+ship = NodePath("..")
+speed = 35.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8.34465e-07, -4.52995e-06)
+scale = Vector2(0.828125, 88)
+texture = SubResource("CurveTexture_e84nc")

@@ -9,6 +9,7 @@ class_name LightWeapon
 @export_group("Animation")
 @export var _appearTime: float = 0.6
 @export var _disAppearTime: float = 0.4
+@export var offset: float = 0.5
 
 var tween: Tween
 
@@ -43,7 +44,7 @@ func DisappearLigth():
 	tween.tween_property(light, "width", 0, _disAppearTime)
 
 func _process(delta):
-	get_tree().create_tween().tween_property(self, "target_position", get_local_mouse_position(), 1)
+	get_tree().create_tween().tween_property(self, "target_position", get_local_mouse_position(), offset)
 	light.points[1] = Vector2(target_position.x + laserOffset, target_position.y)
 
 func _OnStopAttack():

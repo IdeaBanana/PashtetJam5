@@ -13,5 +13,16 @@ func _ready():
 
 func Attack():
 	for i in range(mortarQuantity):
-		pass
+		var betweenTimer := get_tree().create_timer(timeBetweenAttack)
+		await betweenTimer.timeout
+		var coreInstance: MoratarCore = mortarCore.instantiate()
+		var house := get_overlapping_bodies().filter(func(child): return child is LightHouse)
+		if get_overlapping_bodies().filter(func(child): return child is LightHouse):
+			coreInstance.SetTarget(house[0].global_position)
+			add_child(coreInstance)
+	Reload()
 
+func Reload():
+	var reloadTimer := get_tree().create_timer(reloadTime)
+	await reloadTimer.timeout
+	Attack()
